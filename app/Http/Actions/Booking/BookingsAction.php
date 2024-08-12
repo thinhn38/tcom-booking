@@ -17,7 +17,8 @@ class BookingsAction
     {
         $userId = auth()->user()->id;
         $cloneBookings = $bookings;
-        $dbBookings = Booking::where('user_id', $userId)->get();
+        $dbBookings = Booking::where('user_id', $userId)->where('date_booking', ">=", date('Y-m-d'))->get();
+        dd($dbBookings);
 
         foreach ($dbBookings as $dbBooking) {
             $bookings[] = [
